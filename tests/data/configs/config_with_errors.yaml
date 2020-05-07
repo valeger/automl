@@ -1,0 +1,39 @@
+version: "1.1"
+name: automl_project
+schedule: "* * * *"
+stages:
+  train:
+    - step_name: "sarimax"
+      path_to_executable: models/train_sarimax.py
+      dependency_path: models/requirements.txt
+      cpu_request: 0.5
+      memory_request: 500
+      min_ready_seconds: 10
+    - step_name: "deepar"
+      path_to_executable: models/train_deepar.py
+      dependency_path: models/requirements.txt
+      cpu_request: 0.5
+      memory_request: 500
+      min_ready_seconds: 15
+  compare:
+    - step_name: "sarimax-vs-deepar"
+      path_to_executable: models/compare.py
+      dependency_path: models/requirements.txt
+      image: foo/bar:latest
+      cpu_request: 0.5
+      memory_request: 500
+      min_ready_seconds: 15
+      envs:
+        AWS_SECRET_ACCESS_KEY: foo
+        AWS_ACCESS_KEY_ID: boo
+  serve:
+    - step_name: "triton-server"
+      path_to_executable: api/serve_model.py
+      dependency_path: api/requirements.txt
+      replicas: 2
+      cpu_request: 0.5
+      memory_request: 1000
+      service:
+        max_startup_time_seconds: 30
+        port: 5000
+        ingress: true
