@@ -1,0 +1,16 @@
+__pycache__
+.pytest*
+.vscode
+.tox
+venv
+eggs
+.eggs
+*.egg-info
+build
+dist
+env
+.github
+.circleci
+Pipfile
+Pipfile.lock
+*coverage*

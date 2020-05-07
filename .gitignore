@@ -1,0 +1,15 @@
+__pycache__
+.pytest*
+.vscode
+.tox
+venv
+eggs
+.eggs
+*.egg-info
+build
+dist
+env
+Pipfile
+Pipfile.lock
+.mypy_cache
+*coverage*
