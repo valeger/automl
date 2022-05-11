@@ -1,4 +1,4 @@
-FROM python:3.7-slim
+FROM python:3.9-slim
 RUN apt -y update &&\
     apt-get install -y git &&\
     apt -y install build-essential &&\

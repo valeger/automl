@@ -1,4 +1,4 @@
-FROM python:3.7-slim AS base
+FROM python:3.9-slim AS base
 
 FROM base as build
 RUN apt -y update &&\ 
