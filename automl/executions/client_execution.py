@@ -1,3 +1,4 @@
+import os
 import typing as t
 import logging
 
@@ -61,10 +62,17 @@ def create_runner_object(
 
     :return: Kubernetes V1Job object.
     """
+
+    docker_test_tag = os.getenv("DOCKER_TEST_TAG")
+    container_envs = [
+        client.V1EnvVar(name="DOCKER_TEST_TAG", value=docker_test_tag)
+    ] if docker_test_tag else None
+
     container = client.V1Container(
         name=container_name,
         image=image,
-        image_pull_policy="IfNotPresent",
+        image_pull_policy="Always",
+        env=container_envs,
         env_from=create_envs_from_secrets(
             [get_repo_url_secret_name(workflow_name)],
             namespace
