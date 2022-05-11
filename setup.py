@@ -8,7 +8,7 @@ LONG_DESCRIPTION = DESCRIPTION
 URL = "https://github.com/valeger/automl"
 EMAIL = "valeger@protonmail.com"
 AUTHOR = "valeger"
-REQUIRES_PYTHON = ">=3.7.*"
+REQUIRES_PYTHON = ">=3.8.*"
 
 
 def get_version() -> str:
@@ -33,8 +33,8 @@ setup(
     python_requires=REQUIRES_PYTHON,
     url=URL,
     classifiers=[
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
         "Operating System :: OS Independent",
         "License :: OSI Approved :: BSD License",
     ],
@@ -43,20 +43,20 @@ setup(
         "automl": ["logger.conf"]
     },
     install_requires=[
-        "kubernetes==11.0.0",
+        "kubernetes==23.3.0",
         "requests",
         "PyYAML",
-        "click>=7.0",
-        "pydantic==1.4",
-        "tabulate==0.8.7",
-        "colorlog==4.1.0"
+        "click>=7.1.2",
+        "pydantic==1.9.0",
+        "tabulate==0.8.9",
+        "colorlog==6.6.0"
     ],
     extras_require={
         "test": [
-            "pytest==5.4.1",
+            "pytest==7.1.2",
             "pytest-cov",
             "mypy",
-            "flake8==3.8.0",
+            "flake8==4.0.1",
             "tox"
         ]
     },
