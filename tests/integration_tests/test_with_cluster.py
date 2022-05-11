@@ -357,7 +357,7 @@ def test_cli_workflow_with_private_repo():
         encoding="utf-8",
     )
 
-    sleep(60)
+    sleep(30)
 
     deployment_objects = client.AppsV1Api().list_namespaced_deployment(
         namespace=AUTOML_NAMESPACE
