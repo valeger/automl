@@ -103,39 +103,18 @@ def test_delete_jobs(mock_k8s_batch):
 
 @patch("kubernetes.client.BatchV1Api")
 def test_get_job_status(mock_k8s_batch, test_job_object):
-    mock_k8s_batch().read_namespaced_job_status.return_value = [
-        client.V1Job(
-            metadata=client.V1ObjectMeta(
-                name=test_job_object.metadata.name,
-                namespace=test_job_object.metadata.namespace
-            ),
-            status=client.V1JobStatus(active=1)
-        ),
-        client.V1Job(
-            metadata=client.V1ObjectMeta(
-                name=test_job_object.metadata.name,
-                namespace=test_job_object.metadata.namespace
-            ),
-            status=client.V1JobStatus(succeeded=1)
-        ),
-        client.V1Job(
-            metadata=client.V1ObjectMeta(
-                name=test_job_object.metadata.name,
-                namespace=test_job_object.metadata.namespace
-            ),
-            status=client.V1JobStatus(failed=1)
-        ),
-        client.V1Job(
-            metadata=client.V1ObjectMeta(
-                name=test_job_object.metadata.name,
-                namespace=test_job_object.metadata.namespace
-            ),
-            status=client.V1JobStatus()
-        )
-    ]
+    mock_k8s_batch().read_namespaced_job_status.return_value = test_job_object
+
+    test_job_object.status = client.V1JobStatus(active=1)
     assert get_job_status(test_job_object) == JobStatus.ACTIVE
+
+    test_job_object.status = client.V1JobStatus(succeeded=1)
     assert get_job_status(test_job_object) == JobStatus.SUCCEEDED
+
+    test_job_object.status = client.V1JobStatus(failed=1)
     assert get_job_status(test_job_object) == JobStatus.FAILED
+
+    test_job_object.status = client.V1JobStatus()
     with pytest.raises(RuntimeError):
         get_job_status(test_job_object)
 
