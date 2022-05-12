@@ -1,4 +1,4 @@
-[![GitHub release](https://img.shields.io/github/release/valeger/automl)](https://github.com/valeger/automl/releases/latest)
+[![GitHub release](https://img.shields.io/github/v/release/valeger/automl.svg)](https://github.com/valeger/automl/releases/latest)
 [![CI workflow](https://img.shields.io/github/workflow/status/valeger/automl/ci?label=ci&logo=github&style=flat)](https://github.com/valeger/automl/actions?workflow=ci)
 [![codecov](https://codecov.io/gh/valeger/automl/branch/master/graph/badge.svg?token=EMWNQ6FW2S)](https://codecov.io/gh/valeger/automl) 
 
